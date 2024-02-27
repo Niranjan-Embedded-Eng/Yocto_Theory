@@ -1,0 +1,101 @@
+Creation of Yocto Layers
+================
+-> Layers are used to logically seperate the files in Yocto Project.
+-> Layers contain set of Instruction that are used by OE build System.
+
+Steps 
+====
+
+S1. Check Exsisting Layer.
+-----------------------------
+In general, when we want to create layers we need to check weather someone already 
+created layer containing the meta data that we need.[ Check Open Embedded Community]
+
+S2. Create a Directory
+------------------------
+1] cd source 
+2] mkdir meta-<layer_Name> 
+3] cd meta-<layer_Name>
+
+S3. Create a Layer Configuartion File
+----------------------------------------
+1] mkdir conf
+2] cd conf
+3] vi layer.conf
+4] Paste the .conf in that file [Copy From meta-yocto-bsp/conf/layer.conf]
+
+S4. Enable your Layer
+------------------------
+1] cd .. [Be in Your Layer]
+2] pwd >> /home/niranjan/Documents/Yocto/build/conf/bblayers.conf 
+    Re-directing Path to bblayer.conf
+
+S5. Build Your Layer.
+-----------------------
+1] Navigate to Yocto Directory
+2] Enable Envionrment [source source/poky/oe-init-build-env] 
+3] bitbake core-image-minimal
+
+S6. Test the Layers
+----------------------
+1] bitbake-layers show-layers
+
+
+UNDERSTANDING LAYER.CONF FILE
+========================
+Following is an explanantion of layer configuration file:
+
+BBPATH
+---------
+-> Add's the Layer Root Directory into bitbake Search Path. 
+-> bitbake uses this path to locate class,conf and files that have include and require 
+      statements.
+-> Always Ensure your class and .conf files are unique.
+
+BBFILES
+---------
+-> Defines the location of all receipes in that layer
+
+BBFILE COLLECTIONS:
+-------------------------
+-> Establish current layer through Unique Identifier
+-> That is used for rest of Build Process
+
+BBFILE PATTERN
+-------------------
+-> Expands immediately during parsing to provide the directory of layer
+
+BBFILE PRIORITY
+--------------------
+-> Establish Priority for receipes in the layer when same name receipes found in different layer.
+
+LAYER DEPENDS
+-------------------
+-> layer dependencies on which this layer is depend.
+
+LAYERSERIES_COMPAT
+--------------------------
+-> Mention the layer for which the current version thuis layer is compatible.
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

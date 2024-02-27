@@ -1,0 +1,16 @@
+
+					POKY SOURCE TREE
+				-----------------------------------------
+-> In this Section let's understand the Poky Diretory. To Understand the poky on 
+    Upper level. Use this command tree -dL 1.
+-> We shall be able to see & lets understand one by one 
+.
+├── bitbake          	= Holds all scripts used by the bitbake command.
+├── contrib          	= Contains contributed files or directories (no specific description provided).
+├── documentation 	= All Documentation sources for Yocto Project Documentation. Can be used to generate PDF.
+├── meta             	= Contains Open-Embedded Core meta data
+├── meta-poky        	= Holds the configuration for Poky reference distribution
+├── meta-selftest    	= Contains tests and testing infrastructure for Yocto Project
+├── meta-skeleton    	= Contains template recipes for BSP and Kernel development
+├── meta-yocto-bsp   	= Configuration for Yocto Project reference hardware board support package 
+└── scripts          	= Contains scripts used to set up environment, development tools, tools to flash generated images on target.

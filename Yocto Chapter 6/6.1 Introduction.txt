@@ -1,0 +1,35 @@
+Devshell 
+----------
+-> Devshell stands for all the steps needed to built software from scatch by following Yocto recipes.
+-> When editing packages or debugging build failures, a development shell can be a useful tool.
+
+What is Devshell ?
+---------------------
+-> The devshell is a terminal shell that runs in the same context as BitBake task engine.
+-> In the new terminal, all the enviornmental variables needed for the build are still defined , so we can use commands such as configure and make.
+-> The commands execute just as if the build system are executing them.
+
+Command :
+-------------
+bitbake -c devshell <recipe_name>
+
+What Happens when you run the command ?
+-----------------------------------------------------
+-> Starts shell whose enviornment is set up for development, debugging or both.
+-> New terminal is opened and you are palced inn ${S} the source directory.
+-> All tasks up to and including do_patch() are run for specified target.
+-> When you are finished using devshell , exit the shell or close the window.
+
+Devshell Commands
+------------------------
+-> Devshell provides an enviornmentt with interactive shell with all appropriate variables set for Cross Compling
+
+-> Some of Commands :
+=> echo $CC
+=> echo $PATH
+=> echo $CXX
+=> echo $LDFLAGS
+=> echo $CFLAGS
+
+Now you can make modficiations and compile and generate an executable
+   

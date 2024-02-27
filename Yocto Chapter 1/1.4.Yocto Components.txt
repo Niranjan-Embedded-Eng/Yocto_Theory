@@ -1,0 +1,43 @@
+Yocto Components
+=============
+Let's Understand the following
+1. Bitbake Tool
+2. Recipes
+3. Classes
+4. Configurations
+
+
+1. BITBAKE TOOL
+=============
+BitBake is a Python Program.
+-> It is driven by User Created Configuration, can execute user created tasks for specified 
+    target i.e recipes.
+-> It is Build engine in Yocto Project. It executes task according to provided recipes,classes
+    configuration files and metadata.
+-> Bitbake takes recipes(.bb and .bbappend files) as input and does following task
+    1. Fetch : Downloads the source file from local or remote.
+    2. Unpack: It extracts the source file into source directory.
+    3. Patch : Apply Patch on source code.
+    4. Configure: Set the flag for the software being build.
+    5. Build: Compile source files and generate executable program.
+    6. Installation: Executable Program and other file copy to target directory.
+    7. Package: Generate the package for target system.
+
+2. RECEIPE
+========
+-> Receipe are the files which have .bb suffix.
+-> It generally contains the information about a particular software.
+-> Info regarding where and how to fecth the source, what to patch in the unaltered 
+    code, how to configure and complete compilation and finally generate package for 
+    that software.
+
+3. CLASSES
+========
+-> It Contain Information which can be shared between receipes
+
+4. CONFIGURATIONS
+================
+-> The Configuration Files (.config) define various configuration varibales that govern 
+     the build process.
+-> They fall into several areas that define machine configuration, compiler tunning options and 
+    etc.

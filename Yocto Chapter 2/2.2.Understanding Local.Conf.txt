@@ -1,0 +1,88 @@
+Understanding Local.conf
+----------------------------
+-> When we initilize Build Enviornment it creates this .conf file.
+-> This File is Very Important as it contains all aspects of build process.
+-> We can configure 
+      - Target Machine
+      - Host architecture related Toolchains etc.
+-> The variables inside this file are Important and we can understand the possibilites.
+-> We generally change "MACHINE " variable . This variable contains the targe machine for which we are building our Linux Distro.
+
+BSP SUPPORTED BY YOCTO
+--------------------------------
+- beaglebone-yocto: This is BeagleBone, which is the reference platform for 32-bit ARM
+• genericx86: This is generic support for 32-bit x86-based machines
+• genericx86-64: This is generic support for 64-bit x86-based machines
+• edgerouter: This is EdgeRouter Lite, which is the reference platform for 64-bit MIPS.
+
+-> the machine are available in folder called meta-yocto-bsp.
+-> beside this OE Core Provides QEMU for various Machines
+
+DEFAULT CONFIGURATIONS IN LOCAL.CONF FILE
+--------------------------------------------------------
+1. MACHINE 
+	target for which Linux Distro will be Developed.
+2. DL_DIR 
+	 Download directory for software archives. This directory will contains all the downloaded packages so that it will be used in susequent build.
+
+3. SSTATE_DIR 
+	 - This specifes where shared state cache files are stored. it contains pre build binary packages for software components used in build. 
+	 - The Purpose of this Directory is to speed up the build process by utilizing already built packages.
+	 - When a Package is build for first time the build system stores the binaries, headers and other artifacts in this Directory.
+
+4. TMP_DIR
+	-  This is an enviornment variable that to be used for temporary files by various programs and scripts.
+            -  This Directory is used as storage of Build artifacts during build provess.
+5. DISTRO
+           - Variable that specifes the build distribution being built.
+           - It is collection of software components + configuration file that work together to build complete linux distribution
+           - If we set DISTRO to poky then build system will use configuration files and packages recipes from this ditrbution to build.
+
+6. PACKAGE_CLASSES
+	-  Variable that specifies type of packages to be built for Target System.
+	-  If we set to package_rpm then Yocto will create RPM Packages.
+	- RPM is package management system that is used widely in all package management system [ Red hat , Fedora,CentOS, OpenSUE]
+	- DEB package management is widely used on debian and ubuntu systems
+
+7. EXTRA IMAGE FEATURES
+	- Variable that specifies the additional features that to be added to target Image.
+	- debug-tweaks -- Basically it is an additional feature that can be added to Image. This will add additional tools and utilities that help in debugging and trouble shooting.
+	- dbg-pkg -- it adds dbg packages to all the packages which includes symbols for debugging and profiling.
+	- dev-pkg -- it add dev packages to all the packages which allows user to develop against the librarie in an Image
+	- read-only-rootfs -- it adds RFS with only Read only file system
+	- tools-debug -- adds tools such as gdb and strace 
+	- tools-sdk -- adds tools such as gcc,make,pkgconfig
+
+8. USER CLASSES
+	- The build stats records performance stats about each task executed during the build [ Build time, CPU Usage]
+	- The build stats gives us idea like how much time it took to build , so that we can identify the bootle necks. Also additionaly it creates a database of logs.
+	- When we use this Class the output goes into BUILDSTATS_BASE directory to ${TMPDIR}/buildstats
+
+9. PATCHRESOLVE
+	PATCHRESOLVE=noop
+	- Determins the action when pacth fails in build.
+	- It can took either one of two values. user or noop
+	- noop -- build will simply fail.
+	- user -- user means bild it will open a shell by which user can solve the conflicts.
+
+10. BB_DISKMON_DIRS
+	- Monitors the Disk Space and inodes available during the build.
+	- STOPTASKS,${TMPDIR},1G,100K stops the build after all currently executing tasks complete when the minimum disk space in the ${TMPDIR} directory drops below 1 Gbyte.
+	- HALT,${TMPDIR},100M,1K immediately stops the build when the disk space in the ${TMPDIR} directory drops below 100 Mbytes. 
+
+11. CONF_VERSION
+	CONF_VERSION = "2"
+	- It Specifies the Version of Configuration syntax to be used.
+	- It specifies the version of syntax to be used while build for layer.conf and bblayer.conf.
+	- Previously 1 was Used and now it is been upgraded to 2 and we can use new features
+
+12. RM_OLD_IMAGE
+	RM_OLD_IMAGE = "1"
+	- Setting this variable to 1 it will delete all the files which have been built previously. 
+13. INHERIT
+	INHERIT += "rm_work"
+	- Setting this will delete all temporrary files which have been used for built. 
+	- This will free up space
+
+
+

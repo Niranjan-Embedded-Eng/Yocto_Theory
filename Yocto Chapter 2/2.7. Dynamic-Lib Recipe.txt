@@ -1,0 +1,9 @@
+Dynamic Library
+------------------
+-> It is also called as Shared Library.
+-> They are linked at run time.
+-> Every program can access this library at run time and can avoid creation of multiple copies for every program.
+
+Steps to Create Dynamic Library
+------------------------------------
+1. Create Objectable file

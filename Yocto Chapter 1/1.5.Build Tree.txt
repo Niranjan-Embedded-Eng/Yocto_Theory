@@ -1,0 +1,25 @@
+				BUILD TREE
+				--------------
+
+-> In this section let's understand the build directory of Yocto Project.
+-> lets understand the first level of directories under Build Directory.
+-> to see the dir of Level 1 use the command [ tree -L 1]
+-> .
+├── cache		= Contains files which are used very often.
+├── conf		= Configuration files. Image specfic & layer configuration
+├── downloads		= Downloaded Upstream [zip,tarballs etc] used in builds.
+├── sstate-cache	= Shared state cache used in builds.
+└── tmp		= Holds all build system Output.
+ 
+	├── cache             	 = Temporary cache files used during the build process.
+	├── deploy            	 = Contains the output of the build process, such as binaries, libraries, and other artifacts.
+	├── hosttools         	 = Tools built for the host system (not the target system).
+	├── log              	 = Log files generated during the build process.
+	├── pkgdata           	 = Metadata and information about packages built during the process.
+	├── saved_tmpdir      	 = Temporary directory that might contain files saved for debugging or analysis.
+	├── sstate-control    	 = State files used for incremental builds (shared state cache control).
+	├── stamps            	 = Timestamps and markers used during the build process to track progress.
+	├── sysroots-components = Components installed in the target system's root filesystem.
+	├── sysroots-uninative 	 = Components used for cross-compilation.
+	├── work              	 = Temporary work directories where build processes take place.
+	└── work-shared       	 = Shared work directories, often used in a shared build environment.

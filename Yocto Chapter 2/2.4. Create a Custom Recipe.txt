@@ -1,0 +1,38 @@
+					RECEIPE
+					----------
+What is Receipe ?
+--------------------
+-> Receipe are the files which have .bb suffix.
+-> It generally contains the information about a particular software.
+-> Info regarding where and how to fecth the source, what to patch in the unaltered 
+    code, how to configure and complete compilation and finally generate package for 
+    that software
+
+How to Create a Receipe ?
+-------------------------------
+Step 1: go to source 
+Step 2: go to meta-layername
+Step 3: cd recipe-example
+Step 4: mkdir hello
+Step 5: cd hello
+Step 6: mkdir files
+Step 7: cd files
+Step 8: vi hello.c
+Step 9: Come Back to hello directory
+Step 10: vi hello_0.1.bb
+Step 11: Go to Build directory 
+Step 12: vi conf/local.conf
+and add
+	IMAGE_INSTALL += "hello"
+Step 13: Inside receipe example create directory name "image"
+Step 14: cd image
+Step 15: vi myimage.bb
+Step 16: Go to source/poky/meta/recipe-core/image/core-image-minimal and
+	add 
+	IMAGE_INSTALL += "hello"
+Step 17: Go to build directory and 
+	bitbake hello
+Step 18: bitbake core-image-minimal
+Step 19: runqemu
+Step 20: root
+Step 21: hello [ It should show what u give in C File ]

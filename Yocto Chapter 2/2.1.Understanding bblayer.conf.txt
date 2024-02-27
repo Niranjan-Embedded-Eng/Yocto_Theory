@@ -1,0 +1,29 @@
+What is bblayer.conf ?
+------------------------
+- it is conf file which is used for build.
+- it will contain the set of layers that should be included in built.
+- it will specifes the location of all layers in local machine.
+
+What is Layer ?
+------------------
+- Layer is collection of meta data that is used by our build system.
+- Layer is collection of related meta data that contains configuration files , recipes packages,configuration files and that are used by build an customized linux image.
+
+UNDERSTANING BBLAYER.CONF
+-------------------------------------
+1. POKY_BBLAYERS_CONF_VERSION
+	POKY_BBLAYERS_CONF_VERSION = "2"
+	- It Specifies the configuration syntax to be used for conf 
+
+2. BBPATH = "${TOPDIR}":
+	- it specifies the search path for bitbake to look for metadata files. 
+	- TOPDIR meaning it will specify the top directory for bitbake
+
+3. BBFILES ?= "":
+	- Variable specifies the files which should be included during Parsing metadata.
+	- It is know pointed to empty string which means no file is included.
+	- In later stages we will add specific files or reciepes. 
+
+4. BBLAYERS ?= "/ layers/
+	- This variable holds all the layers which is created manually or using scripts.
+	- To enable our layer we need to add our path here.

@@ -1,0 +1,70 @@
+1) Download the 
+  1. minicom
+  2. libmodbus
+  3. mqtt
+  4. mysql 
+from mainline and try to configure, compile & test the binary manually.
+
+Steps for Minicom
+=============
+1] mkdir Yocto_Exp
+2] cd Yocto_Exp
+3] git clone https://github.com/Distrotech/minicom.git
+4] ./configure
+5] make
+6] make install
+7] check Binary in /usr/bin [minicom Binary File]
+8] Type minicom --version to get the version of minicom.
+
+Steps for libmodbus
+===============
+1] cd Yocto_Exp
+2] git clone https://github.com/stephane/libmodbus.git
+3] ls
+4] cd libmodbus/
+5] sudo apt-get install autoconf && sudo apt-get install libtool
+6] ./autogen.sh
+7] ./configure
+8] make install
+9] cd tests
+10] make check [ To Check Weather all the libmodbus is installed or not]
+
+For MQTT and MYSQL also we can Install Individual packages.
+
+2) Install bitbake tool
+Sol:
+
+Steps to Install BitBake
+=================
+Since we already installed Yocto Project, we already got bitbake as bundled product of Yocto.
+Here are the few ways by we can check bitbake tool.
+
+1] Enable Toolchain by giving this commadn
+   => source source/poky/oe-init-build-env
+
+2] Type bitbake --version
+   => BitBake Build Tool Core version 2.0.0
+
+3) Create Simple recipe to define new task
+Sol:-
+
+Steps to Create Recipe
+---------------------------
+1] cd source/meta-<layer-name>
+2] cd recipe-examples
+3] mkdir <recipe-name> // hello
+4] cd hello
+5] mkdir files && cd files 
+6] vi hello.c 
+7] cd ..
+8] vi hello_0.1.bb
+9] cd ../../../../ [ Be in Build Directory ]
+10] vi conf/local.conf
+11] add this line IMAGE_INSTALL += "hello"
+12] go to source/meta-<layer-name>/recipes-example/
+13] mkdir image
+14] cd image
+15] vi myimage.bb
+16] go to source/poky/meta/recipes-core/image and opn core-image-minimal.bb file
+17] 
+

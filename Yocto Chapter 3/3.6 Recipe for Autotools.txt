@@ -1,0 +1,9 @@
+Recipe for autotools package
+----------------------------------
+-> Applications which use Autotools such as autoconf and automake reuired this things
+	- a recipe that has a source archive listed in SRC_URI
+	- also inherit the autotools class
+
+-> Autotools class takes cares of most of complexity of building an autotools based packages
+
+->   

@@ -1,0 +1,23 @@
+The Yocto Project Layer Model
+=====================
+- Yocto Project "Layer Model" is a development model for Embedded Linux Development
+   that makes Yocto Project Unique from other build System.
+- It Supports Collaboration and Customization.
+- Layers are repositiories that contains set of Instructions that tell OE Build System what 
+  to do.
+- We can Always Reuse, Share and Collborate Layers.
+- Layers Can Contain Changes to Previous Instructions.
+- We Use Layers to logically Sperate Information in our Build.
+  Ex: We could Use BSP,GUI, middle ware in diiferent layers.
+
+Why Layered Model ?
+===============
+- We are tempted to organize our entire Project into one repository.
+- But it limits and complicates future Customizations and Reuse.
+- Modular Metdata will help to cope change in future.
+
+What is Yocto Layers ?
+================
+- Layers are Repositories that conatain of Set of Instructions for Embedded Linux Development.
+- Layers logically Seperate Information about our Project.
+- Layers allows Users to colloborate, Customization and reuse.

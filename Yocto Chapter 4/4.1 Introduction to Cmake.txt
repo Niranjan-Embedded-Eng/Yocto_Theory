@@ -1,0 +1,20 @@
+What ic CMake ?
+-------------------
+-> CMake is a cross-platform free and open source software used for managing the build process usinf compiler-independent method
+-> Cmake is an extensible opens-source system that manages the build process which is independent of OS and Compiler
+
+CMake vs Autotools
+-----------------------
+-> CMake is a cross-platform build system that works 
+	- Windows
+	- Linux
+	- Apple
+-> Once you write configuration file for CMake, we can generate
+	- Makefile in Unix/Linux
+	- Visual studio solution in windows
+
+Popular Open Source Project with CMake
+-----------------------------------------------
+-> OpenCV : https://github.com/opencv/opencv
+-> Caffe2: https://github.com/caffe2/caffe2
+-> MySql Server: https://github.com/mysql/mysql-server

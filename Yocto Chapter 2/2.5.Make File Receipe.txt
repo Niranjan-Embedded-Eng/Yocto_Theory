@@ -1,0 +1,28 @@
+Steps for MakeFile Recipes
+-------------------------------
+1. cd sources 
+2. cd metal-ayer
+3. cd recipes-example
+4. mkdir hellomakefile
+5. cd hellomakefile
+6. mkdir files && vi hellomakefile_0.1.bb
+7. cd files
+8. touch Makefile && touch hellomakefile.c
+9. vi hellomakefile.c 
+10. vi Makefile  
+11. cd ..
+12. vi hellomakefile_0.1.bb
+13.  cd ../../../../
+14. Enable Poky Build Enviornment [ source source/poky/oe-init-build-env ]
+15. vi conf/local.conf
+   Edit This 
+   {
+   CONF_VERSION = "2"
+   IMAGE_INSTALL += "hellomakefile"
+   IMAGE_INSTALL += "usbutils"
+   IMAGE_INSTALL += "packagegroup-core-buildessential"
+   }
+16. bitbake core-image-minimal
+17. runqemu
+18. root
+19. hellomakefile [ It should show "Welcome to Phytec !! "]

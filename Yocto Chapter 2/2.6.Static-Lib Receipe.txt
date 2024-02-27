@@ -1,0 +1,53 @@
+What is Static Lib ?
+----------------------
+-> It is collection of Compiled code (functions, classes and variables) that are linked     directly into a program at compile time.
+-> This means that code from static lib becoms part of final executable file, providing 
+     necessary functionality without requiring separate dynamic linking during runtime.
+
+Why Static Lib?
+------------------
+There are many use case of Static lib, however some of them are 
+
+ - Portability ( Meaning it can run pn any system )
+ - Isolation ( Isolates dependencies that specific version are used during development )
+ - Performance (Avoids the time of dynamically loading of libraries during runtime )
+ - Easy of Use ( It is easy to create and Use ).
+
+How to create Static Lib ? 
+-----------------------------
+Step-1] Create a Simple Recipe
+-------------------------------------
+-> cd yocto_project/sources/meta-yourlayer/recipes-examples.
+-> mkdir mystatic 
+-> cd mystatic
+-> mkdir files
+-> touch add.c calculator.c math-lib.c// here add.c , calculator.c are .c files and mathlib.c is lib file
+
+Step -2] Create a Makefile
+------------------------------
+-> vim Makefile
+-> Add Contents of add.c, calculator.c, math-lib.c and Makefile
+
+Step -3] Create .bb Files for add.c and calculator.c
+---------------------------------------------------------
+-> Be in mystatic dir 
+-> vim add.bb and calculator.bb
+-> Add contents of both .bb files
+
+Step -4] Add the Recipe Package in Your Conf and Core-Image-Minimal.bb Files
+------------------------------------------------------------------------------------------
+-> IMAGE_INSTALL += "add"
+-> IMAGE_INSTALL += "calculator"
+
+Step-5] Bake the Recipe 
+----------------------------
+-> Enable toolchain
+-> bitbake add 
+-> bitbake calculator
+
+Step-6] Run the Emulator
+------------------------------
+-> runqemu
+-> login with root
+-> add 
+-> calculator

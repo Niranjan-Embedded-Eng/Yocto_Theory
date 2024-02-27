@@ -1,0 +1,35 @@
+Yocto Project WorkFlow
+---------------------------
+-> The OpenEmbedded Build System Uses "WorkFlow" to accomplish Images and SDK 
+Generation.
+
+-> In General Build WorkFlow Consists of Several Functions
+
+Components of WorkFlow
+------------------------------
+1) User Configuration: Meta data you can use to control the build process
+2) Meta Data Layers: Various Layer that provide software,machine and distro meta data
+3) Source Files: Upstream Releases, local projects and SCM's
+4) Build System: 
+   - Process Under Control of BitBake.
+   - This Block Fecthe Source, Apply patch and complete configuration, analyzes the output
+      for package generation, creates and test packages, generates imagfes and generates 
+      and cross development tools
+5) Package Feeds
+   - Directories Containing Output Packages (RPM, DEB or IPK).
+   - These Packages used for SDK.
+   - These later can be sent to Webserver and further work on that.
+6) Images : Images produced by workflow
+7) Application Development SDK: Cross Development toools that are produced along with Image
+
+Work Flow 
+-------------
+Step 1: Developers Specify architecture,polices patches and configuration details
+Step 2: Build System Fetches and downloads the source code from specfied location
+Step 3: Build System Extracts the source in local folder and configurs and compiles the 
+          software.
+Step 4: Build System then Installs software into temp stack.
+Step 5: Different QA and Sanity Checks run throughout Entire build Process.
+Step 6: After binaries are created build system generates a binary package feed that is 
+          used to create the final root file Image.
+Step 7: The Build System Generates the file System Image and ESDK in Parallel.

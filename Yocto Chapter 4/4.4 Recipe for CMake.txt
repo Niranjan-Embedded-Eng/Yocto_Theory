@@ -1,0 +1,20 @@
+Recipe for CMake
+--------------------
+-> Applications that use cmake require
+	- a recipe that has a source archive listed in SRC_URI
+	- also inherit the cmake class
+-> Generally the CMake build system knows how to install the software so a overwrite over do_install is not neccessary.
+
+Syntax of .bb file
+--------------------
+SUMMARY = "Simple hello world  application"
+LICENSE = "MIT"
+LIC_FILES_CHKSUM = "file:/${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
+
+
+SRC_URI = "file://chello.c \
+	   file://CMakeLists.txt"
+
+S = "${WORKDIR}"
+
+inherit cmake

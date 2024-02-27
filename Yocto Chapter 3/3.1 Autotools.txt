@@ -1,0 +1,131 @@
+Makefiles Problems
+----------------------
+Make allows people to generate executables easily based on source code.
+
+Advantages:
+--------------
+	1. allows for faster builds.
+	2. keep track of source files that aren't changed since last build was run.
+	3. skips unnecessary steps.
+
+Dis-advantages:
+------------------
+	1. Difficult to make a software program portable.
+	2. If we need our program to on different platform, Makefiles needs to be modfied to work on the given platform.
+	3. the c complier differes from system to system certain library functions are missing on some system, some header files may have different names.
+
+-> So in order to overcome this is we can write conditional code, with code blocks drvien by preprocessor directives. But beacuse of variety o build enviornments this approch becomes unmanagable. Autotools is designed to address this problem.
+
+Introduction to Autotools
+-----------------------------
+-> GNU Autotools family is a collection of utilities designed and developed to assist application and library developers to
+    make their source code portable across a variety of unix based sysetms.
+
+-> It can be used both for 
+	1. Building native programs on build machine.
+	2. Also Cross-compling to other architecture.
+
+-> Autotools is frequently follow these steps
+	- ./configure
+	- make
+	- makeinstall
+
+-> It is made up of many tools 
+    Primary tools:
+	- automake
+	- autoconf
+	- make
+
+-> GNU Projects require a minimum set of files to be included with projects
+	- README
+	- INSTALL
+	- COPYING
+	- THANKS
+	- NEWS
+	- AUTHORS
+	- changelog
+
+Steps for Autotools
+----------------------
+Step 1: Configuration (./configure)
+	- This script is responsible for getting ready to build the software on specific system
+	- It makes sures that all dependencies are available for rest of build and install process
+	- Programs often written in C, usually need C complier in these cases configure script will eastablish that our
+	  system does indeed have a complier find out what is called and 	where to find it.
+
+Step 2: Build (make)
+	- Once configurehas done its job we can call make.
+	- This runs a series of command that is written in Makefile to build the finished program from its source code.
+	- Makefile comes with a template called Makefile.in and the configure script produces a customized Makefile specific to your system.
+
+Step 3: Install (make install)
+	- make install command will copy the built program and its libraries and documentation to correct location
+	- program binary will be copied to a directory on your PATH
+	- program's manual page will be copied to a directory on you MANPATH
+
+
+Steps for Autotools
+-----------------------
+Step1 : 	Create a file configure.ac 
+	- This file is used by both autoconf and automake 
+	- This contains a series of M4 macrro that will be expanded to form configure 	   script.
+	- The macro prefixed with AC_ are autoconf macros
+	- The macro prefixed with AM_are Automake macros
+
+Structure of Configure.ac
+-----------------------------
+AC_INIT([myhello], [1.0], [niranjanembeddedeng55@gmail.com])
+AM_INIT_AUTOMAKE
+AC_OUTPUT
+AC_PROG_CC
+AC_CONFIG_FILES([
+ Makefile
+])
+
+1) AC_INIT:Configure script must call AC_INIT before doing anything else
+Syntax  : AC_INIT	(PACKAGE,VERSION.[BUG-REPORT],[TARNAME],[URL])
+
+You can check this address by running ./confifure --help
+
+2) AM_INIT_AUTOMAKE : Initializes automake for this project
+
+3) AC_OUTPUT: Every configure.ac, should finish by calling AC_OUTPUT.
+
+4) The AC_PROG_CC line causes the configure script to search for a C compiler and define     the variable CC with its name
+
+If there were other dependencies, then we’d use other m4 macros here to discover them;
+
+Step 2: Create .c file and makefile.am file 
+
+Step 3: Setup m4 enviornment autotools  
+	-> aclocal
+
+Step 4 : Generate configure from configure.ac
+ 	-> autoconf
+
+Step 5 : Generate makefile.in from makefile.am
+	-> automake
+
+Step 6: ./configure
+
+Step 7: make
+
+Step 8: make install 
+
+Structure of Makefile.am file
+--------------------------------
+-> Makefile.am contains automake instructions 
+-> makefile.in template is very long and complex so we create .am file 
+	bin_PROGRAMS = myhello
+	myhello_SOURCES = userprog.c
+
+ bin_PROGRAMS = myhello
+-----------------------------------
+
+-> The PROGRAMS suffix is called a primary
+-> The bin prefix tells automake that the file listed here should be installed to the directory defined by the variable bindir.
+
+myhello_SOURCES = userprog.c
+------------------------------------
+-> Since we’ve defined a PROGRAM, we need to tell automake where to find its source files
+-> In this case, the prefix is the name of the program these source files build

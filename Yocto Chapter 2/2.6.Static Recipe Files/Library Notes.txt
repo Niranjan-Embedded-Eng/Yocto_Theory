@@ -1,0 +1,31 @@
+What is Library ?
+-------------------
+-> Library is group of pre-compiled codes,called functions. 
+-> To Avoid repetion of code, package is created called Library.
+-> Library are not executables. There are used either at Run time or Compile Time.
+
+Types of Libraries
+---------------------
+- Dynamic 
+- Static 
+
+Steps to create Executable File
+-----------------------------------
+source code ------> Compiler ------> Linker -------> Executable Code
+                   .C                   .o  
+
+Linker' task
+--------------
+- Copying the code of library function into your object code
+- Complete code of library function is not copied but made available at run time.
+
+Static Library / Static linking
+----------------------------------
+- Linker makes a copy of all library functions to executable file.
+
+Steps
+-------
+- Create Objectable file  [ gcc -c <file_name> -o <obj_name> ]
+- Create Archive file using Objetable file [ ar rcs <lib_name.a> <obj1> <obj2> ]
+- Create Objectable file for User Program
+- Link Object file to Archive file [ gcc -o <obj_name>  <obj_name> .o -L. lib_name.a ] 

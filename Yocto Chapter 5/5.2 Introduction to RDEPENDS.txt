@@ -1,0 +1,60 @@
+RDEPENDS
+-------------
+-> Within a recipe , run time dependencies can be specified using RDEPEDNS variable.
+-> If our recipe says that T depends on P, that means bitbake must deploy P to target system if it deploys T, because T can't be used without P.
+
+Difference between DEPEND and RDEPENDS
+----------------------------------------------------------
+-> DEPENDS : List of the recipe build-time dependencies
+-> RDEPENDS : list of package runtime dependencies. Must be package specific (e.g. with_${PN})
+-> RDEPENDS_${PN} ="package_name"
+
+Try
+---------
+
+Write a recipe for a C Program which uses lspci system call
+
+Dependency on a specific version
+---------------------------------------
+
+Sometimes a recipe have dependencies on specific versions of another recipe.
+
+BitBake allows to reflect this by using:
+
+DEPENDS = "recipe-b (>= 1.2)"
+RDEPENDS_${PN} = "recipe-b (>= 1.2)"
+
+The following operators are supported: =, >, <, >= and <=.
+
+Recipe Dependency Information
+-------------------------------
+
+Dependency information can help you understand why a recipe is built.
+
+To generate dependency information for a recipe, run the following command:
+
+$ bitbake -g recipename
+
+This command writes the following files in the current directory:
+
+pn-buildlist
+==============
+
+	A list of recipes/targets involved in building recipename. 
+
+	 "Involved" here means that at least one task from the recipe needs to run when building recipename from scratch
+
+task-depends.dot
+==================
+
+	A graph showing dependencies between tasks.
+
+The graphs are in DOT format and can be converted to images (e.g. using the dot tool from Graphviz).
+
+you can download it using 
+
+$ sudo apt install graphviz
+
+$ man dot
+
+

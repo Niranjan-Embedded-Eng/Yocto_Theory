@@ -1,0 +1,80 @@
+Dependencies
+----------------
+-> Most of Software packages need a list of other packages that are known as dependencies.
+-> Ex: makemnuconfig needs ncurses library
+-> These dependencies fall into two categories
+	1. build-time dependencies: required when the software is built.
+	2. run-time dependencies: These are required to be installed in target in order  for software to execute.
+
+Examples: 
+-----------
+1. Build Time Dependencies:
+	- Your Software uses a particular library. For example pthread/openssl.
+	- Application cannot build without pthread/openssl library.
+
+2. Run Time Dependencies:
+	- Here Application can be built but application cannot be executed.
+	- If Software internally calls a particularly command for example (lspci)
+
+Yocto Variables to define Dependencies
+---------------------------------------------
+-> There are two variables provided by Yocto 
+	1. DEPENDS
+	2. RDEPENDS
+
+1. DEPENDS: Specifies build-time dependencies, via a list of bitbake recipes to build prior to build prior to build the recipe.
+
+2. RDEPENDS: Specifies run-time dependencies, via list of packages to install prior to install  the software package.
+
+1. DEPENDS
+--------------
+-> Within a recipe , we can specify build time dependencies using DEPENDS variable.
+-> It is important that we specify all build-time dependencies explicitly.
+-> When a recipe "A" is DEPENDS on recipe "B". In that case bitbake first builds recipe "B" then builds recipe "A"
+-> In more detail before the do_configure task of recipe A can be run do_populate_sysroot from recipe B will be completed.
+-> Syntax to define DEPENDS 
+   DEPENDS ="recipe1"
+
+do_populate_sysroot
+------------------------
+-> Copies the subset of files installed by do_install task into appropriate sysroot.
+-> Check the log of do_populate_sysroot in recipe 2.
+-> sysroot-destdir/: conatins a subset of files installed within do_install that have benn put into the shared sysroot
+
+Steps 
+-------
+-> Enable toolchain
+-> bitbake - c cleanall recipe // if u r using old recipe
+-> bitbake -e myhello | grep ^WORKDIR=
+-> cd <path>
+->cd temp // logs present
+-> clear all using rm -rf *
+-> be in build and give bitbake -c populate_sysroot myhello
+-> also navigate again to WORKDIR/Temp we can verify the execution using vi log.task_order
+-> then go inside vi log.do_populate_sysroot
+-> cd ..
+-> ls
+-> cd sysroot-destdir
+-> ls
+-> tree .
+-> find . -name userprog
+
+All these steps to have an exposure towards do_populate_sysroot task and its directory. So we can observe that there are subset of files that will be copied to sysroot dir from do_install task.
+
+Sharing files between recipes
+----------------------------------
+-> Recipes often need to use files that are provided by other recipes on build host.
+-> For example, an application linking to common library and its associate header 
+-> the way this access is accomplished is through sysroot
+-> One sysroot exsists per machine
+	- a sysroot for target 
+	- a sysroot for build host
+-> subset of files installed into standard location during do_install task within workdir will be automatically goes into sysroot.
+
+do_prepare_recipe_sysroot
+-------------------------------
+-> This task sets up the two sysroots in ${WORKDIR} 
+	1. recipe-sysroot
+	2. recipe-sysroot-native
+
+

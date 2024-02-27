@@ -1,0 +1,50 @@
+Hello World CMake Steps
+-----------------------------
+Step1: Create a hello world C Program 
+Step 2: Create a file CMakeLists.txt in same folder
+Step 3: Mkdir build
+Step 4: cd build
+Step 5: cmake ..
+Step 6: ls
+Step 7: make
+Step 8: or other way cmake --build .
+
+CMakeLists.txt Format
+-------------------------
+1) CMake Version
+--------------------
+-> cmake_minimum_required(VERSION 2.8.3)
+-> check the version when you are in buidl with help of cmake --version
+-> This is used to avoid any cryptic error messages due to the CMakeLists.txt assuming a later version of CMake than the one installed on the current host.
+
+2) Project Name
+------------------
+-> project(cmake_recipe)
+-> logically groups a number of targets (libraries, exe and custom build steps ) into a self contained collection taht can be built on its own
+
+3) Set of directives and Instructions
+-----------------------------------------
+-> add_executable(userprog userprog.c)
+
+
+What is CmkeLists.txt ?
+--------------------------
+-> It is input to CMake build system for Building software packaes
+-> It contains set of driectives and instructions describing the project source files and targets
+
+Note : Suppose the executable generated now is not set a prescibed target so we need to inform CMake to say were it needs to be installed
+
+Installation
+-------------
+-> If you want to be able to do a "make install" of your code, you need to specify where targets should end up
+
+-> This is done using the CMake install() function:
+
+-> The syntax for executable is
+
+install (TARGETS Executablename DESTINATION bin)
+
+install (TARGETS userprog DESTINATION bin)
+
+add this line at the end of CMakelist.txt and do make and make install 
+

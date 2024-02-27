@@ -1,0 +1,129 @@
+Intro to Yocto Project
+--------------------------
+Yocto Project is a Open Source Collobration project that helps developers 
+to create custom linux based systems that are designed for embedded products 
+regardless of the Product Architecture.
+
+History of Yocto Project
+----------------------------
+-> Founded in Year 2010 in collbration of 
+	- Many Hardware Manufactures
+	- Open Source Operating Systems
+	- Elecontronics Companies and Vendors 
+
+-> It was developed to 
+	- reduce duplication of work 
+	- suppply resources, Information to new and experienced Users.
+
+-> Among the resources provided by Project is Open Embedded Core[core component]
+
+What is Yocto Project?
+--------------------------
+-> Yocto Project is a Open Source Collobration project that helps developers 
+to create custom linux based systems that are designed for embedded products 
+regardless of the Product Architecture.
+
+-> Yocto Project provides best tool set and development enviornment that allows
+Embedded developers across the world for collboration through software stacks
+shared technologies and best practies to create the tailored Linux Images.
+
+-> Yocto Project Provides advantages in both system and applications development
+
+-> It also Provides archival and Management Provides.
+
+-> Also used for Customization used for Speed, footprint and memory utilization.
+
+-> Best for delevering Embedded stacks
+
+-> It can be used for software customization that can be used for Different 
+architecture and software customization that can be scaled and maintened
+easily.
+
+-> It can generate Tailored Linux Distributions based on glibc, musl, c standard
+and RTOS 
+
+Understanding Yocto Project
+---------------------------------
+-> To better understand Yocto Project let's use the analogy of Computing Machine
+     Meaning input is set Computing Machine.
+
+- Input 
+	Set of Data that describes what we want i.e our specification.
+	(Layer Configuartion, Machine Configuartion, Recipes,Packages etc..)
+
+- Output
+	Desired linux based embedded project.
+	(Linux Kernel, bootloader and rootfs)
+
+-> Yocto tools are Present in all steps to produce resultant rootfs bundle and other
+     deliverbles.
+
+-> Yocto Project tools prepare its build enviornment,utilities and toolchains reducing 
+    host software dependency.
+
+-> BitBake and Open Embedded Core are Under Open Embedded Project. Poky is 
+    Under Yocto Project. 
+
+Emergence of Poky
+----------------------
+-> Open Embedded Project was created around 2003 by OpenZaurus Project. It was Based
+On Task scheduler. But it was 
+	chaotic,
+	uncordinated,
+	Unstable,
+	Demanded Polished Based Code
+-> To Overcome this Poky Distribution was born.
+-> Poky started as subset of OE build System and it was less in size and provided 
+    IDE Plugins and QEMU(Quick Emulator).
+-> Yocto Project and Open Embedded Project consolidated their efforts and jointly started 
+    Open Embedded Core.
+
+
+Understanding Poky
+-----------------------
+-> It is reference distribution of Yocto Project and it provides an Open Embedded build
+system (BitBake and Open Embedded Core) as well as set of metadata that helps to create 
+the custom distro.
+
+-> Poky=Bitbake + Meta data
+    Meta Data Consists of 
+	1. Configuration Files (.conf)
+	2. Recipes(.bb and .bbappend)
+	3. Classes(.bbclass)
+	4. Includes(.inc)
+
+-> It is Platform Independent and performs cross-compiling using BitBake tool,OpenEmbedded Core
+    and a default set of meta data.
+
+Understanding BitBake
+-------------------------
+-> BitBake is a Python Program.
+-> It is driven by User Created Configuration, can execute user created tasks for specified 
+    target i.e recipes.
+-> It is Build engine in Yocto Project. It executes task according to provided recipes,classes
+    configuration files and metadata.
+-> Bitbake takes recipes(.bb and .bbappend files) as input and does following task
+    1. Fetch : Downloads the source file from local or remote.
+    2. Unpack: It extracts the source file into source directory.
+    3. Patch : Apply Patch on source code.
+    4. Configure: Set the flag for the software being build.
+    5. Build: Compile source files and generate executable program.
+    6. Installation: Executable Program and other file copy to target directory.
+    7. Package: Generate the package for target system.
+
+
+Open Embedded Core
+---------------------------
+-> This provides the engine of Poky build system.
+-> It provides Core Features and aims to be generic.
+-> It Supports 7 architectures
+    1. ARM
+    2. ARM 64
+    3. X86
+    4. x86 -64
+    5. Power PC
+    6. Power PC 64
+    7. MIPS
+    8. RISC
+
+

@@ -1,0 +1,6 @@
+Installation
+------------
+To Install CMake in Linux, just simply run in your terminal
+
+#For Ubuntu
+sudo apt-get install cmake
